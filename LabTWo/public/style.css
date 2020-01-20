@@ -1,0 +1,19 @@
+.divOne
+{
+    width:1000px;
+    margin: 150px 0 0 450px;;
+}
+#wack
+{
+    width: 300px;
+    border: 2px solid black;
+    margin: 20px 0 20px 310px;
+}
+#btnSubmit
+{
+    width:1000px;
+}
+#navBar
+{
+    margin-left: 400px;
+}
