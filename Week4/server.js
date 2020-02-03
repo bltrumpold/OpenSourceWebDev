@@ -2,7 +2,7 @@ const express = require('express')
 const hbs = require('hbs')
 const app = express()
 
-app.set('view engine', hbs)
+app.set('view engine', 'hbs')
 hbs.registerPartials(__dirname + '/views/partials')
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended:false}))
@@ -26,7 +26,6 @@ hbs.registerHelper('genTables',(num)=>{
     }
     str+='</tbody>'
     str+='</table>'
-    console.log(str)
     return new hbs.handlebars.SafeString(str)
 })
 
@@ -45,12 +44,35 @@ hbs.registerHelper('numArray',function(){
     return new hbs.handlebars.SafeString(strOne)
 })
 
+hbs.registerHelper('error404',()=>{
+    
+    var str = ""
+    var randoDiv = Math.random() * (50 - 20) + 20
+    var tagArr = ['still', 'rotate', 'shrink']
+
+    for(var i = 0; i < randoDiv; i++)
+    {
+        var randomTag = Math.floor(Math.random() * Math.floor(3))
+        str += '<div class="'
+        str += tagArr[randomTag]
+        str += '">'
+        str += '404'
+        str += '</div>'
+    }
+
+    return new hbs.handlebars.SafeString(str)
+})
+
 app.get('/index',(req, res)=>{
     res.render('index.hbs')
 })
 
 app.post('/results',(req,res)=>{
     res.render('results.hbs',{formNum:req.body.listNum})
+})
+
+app.get("/*", (req,res)=>{
+    res.render('error')
 })
 
 app.listen(3000, ()=>{
