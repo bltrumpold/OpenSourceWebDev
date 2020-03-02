@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navBarView"><a href="index">Index</a> <a href="view">View</a> <a href="update">Update</a> <a href="delete">Delete</a></div>
+    <table class="table">
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Department</th>
+            <th>Start Date</th>
+            <th>Job Title</th>
+            <th>Salary</th>
+        </tr>
+
+        {{#each emp}}
+        <tr>
+            <td>{{this.fName}}</td>
+            <td>{{this.lName}}</td>
+            <td>{{this.department}}</td>
+            <td>{{this.startDate}}</td>
+            <td>{{this.jobTitle}}</td>
+            <td>{{this.salary}}</td>
+            <td><form method="POST" action="/update">
+            <input type="submit" class="btn btn-primary" value="update">
+            <input type="hidden" name="rowIdUp" value="{{this._id}}">
+            </form>
+            </td>
+            <td><form method="POST" action="/delete">
+            <input type="submit" class="btn btn-danger" value="delete">
+            <input type="hidden" name="rowIdDel" value="{{this._id}}">
+            </form></td>
+        </tr>
+        {{/each}}
+
+    </table>
+
+</body>
+</html>
